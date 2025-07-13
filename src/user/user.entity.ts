@@ -1,6 +1,7 @@
 import { BaseEntity } from '../database/base-entity';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { RoleEnum } from './role.enum';
+import { ProductEntity } from '../product/product.entity';
 
 @Entity('users')
 export class UserEntity extends BaseEntity {
@@ -28,4 +29,10 @@ export class UserEntity extends BaseEntity {
     default: RoleEnum.SELLER,
   })
   role: RoleEnum;
+
+  @OneToMany(() => ProductEntity, (product) => product.seller)
+  products: ProductEntity[];
+
+  @Column({ default: 0 })
+  deposit: number;
 }
