@@ -10,7 +10,7 @@ import {
 
 @Entity('transactions')
 export class TransactionEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @ManyToOne(() => UserEntity, { eager: true })

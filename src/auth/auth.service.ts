@@ -40,6 +40,7 @@ export class AuthService {
 
   async signUp(signUp: SignUpDto) {
     // console.log(signUp);
+    await this.throwExceptionIfUserExist(signUp.email);
     return await this.userService.createUser({
       firstName: signUp.firstName,
       lastName: signUp.lastName,
@@ -49,7 +50,15 @@ export class AuthService {
     });
   }
 
+  async throwExceptionIfUserExist(email: string) {
+    const existingUser = await this.userService.findUser(email);
+    if (existingUser) {
+      throw new UnauthorizedException('User already exists');
+    }
+  }
+
   async createSeller(sellerDto: CreateSellerDto) {
+    await this.throwExceptionIfUserExist(sellerDto.email);
     return await this.userService.createUser({
       firstName: sellerDto.firstName,
       lastName: sellerDto.lastName,

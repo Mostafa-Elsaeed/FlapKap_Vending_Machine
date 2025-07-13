@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class InitEntities1752422269006 implements MigrationInterface {
-  name = 'InitEntities1752422269006';
+export class InitialDatabaseSetup1752424287839 implements MigrationInterface {
+  name = 'InitialDatabaseSetup1752424287839';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
-      `CREATE TABLE "vending_machine"."products" ("id" SERIAL NOT NULL, "productName" character varying NOT NULL, "cost" integer NOT NULL, "amountAvailable" integer NOT NULL, "sellerId" uuid, CONSTRAINT "PK_0806c755e0aca124e67c0cf6d7d" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "vending_machine"."products" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "productName" character varying NOT NULL, "cost" integer NOT NULL, "amountAvailable" integer NOT NULL, "sellerId" uuid, CONSTRAINT "PK_0806c755e0aca124e67c0cf6d7d" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
       `CREATE TYPE "vending_machine"."users_role_enum" AS ENUM('buyer', 'seller')`,
@@ -14,7 +14,7 @@ export class InitEntities1752422269006 implements MigrationInterface {
       `CREATE TABLE "vending_machine"."users" ("createdDate" TIMESTAMP NOT NULL DEFAULT now(), "updatedDate" TIMESTAMP NOT NULL DEFAULT now(), "deletedDate" TIMESTAMP, "id" uuid NOT NULL DEFAULT uuid_generate_v4(), "firstName" character varying(100) NOT NULL, "lastName" character varying(100) NOT NULL, "email" character varying NOT NULL, "hashPassword" character varying NOT NULL, "isActive" boolean NOT NULL DEFAULT false, "role" "vending_machine"."users_role_enum" NOT NULL DEFAULT 'seller', "deposit" integer NOT NULL DEFAULT '0', CONSTRAINT "UQ_97672ac88f789774dd47f7c8be3" UNIQUE ("email"), CONSTRAINT "PK_a3ffb1c0c8416b9fc6f907b7433" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
-      `CREATE TABLE "vending_machine"."transactions" ("id" SERIAL NOT NULL, "quantity" integer NOT NULL, "totalSpent" integer NOT NULL, "createdAt" TIMESTAMP NOT NULL DEFAULT now(), "buyerId" uuid, "productId" integer, CONSTRAINT "PK_a219afd8dd77ed80f5a862f1db9" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "vending_machine"."transactions" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "quantity" integer NOT NULL, "totalSpent" integer NOT NULL, "createdAt" TIMESTAMP NOT NULL DEFAULT now(), "buyerId" uuid, "productId" uuid, CONSTRAINT "PK_a219afd8dd77ed80f5a862f1db9" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
       `ALTER TABLE "vending_machine"."products" ADD CONSTRAINT "FK_e40a1dd2909378f0da1f34f7bd6" FOREIGN KEY ("sellerId") REFERENCES "vending_machine"."users"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,

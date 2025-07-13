@@ -20,14 +20,28 @@ export default class UserSeeder implements Seeder {
 
   private async createUsers(repository: Repository<UserEntity>): Promise<void> {
     // Create a single user
-    const buyerUser: UserEntity = repository.create({
-      firstName: 'mostafa',
-      lastName: 'elsaeed',
-      email: 'default@example.com',
-      isActive: true,
-      role: RoleEnum.BUYER,
-      hashPassword: await bcrypt.hash('changeme', 10),
-    });
-    await repository.insert(buyerUser);
+    const sellerEmail = 'default@seller.com';
+    const userExists = await this.checkUserExists(repository, sellerEmail);
+    if (userExists) {
+      const sellerUser: UserEntity = repository.create({
+        firstName: 'mostafa',
+        lastName: 'elsaeed',
+        email: sellerEmail,
+        isActive: true,
+        role: RoleEnum.BUYER,
+        hashPassword: await bcrypt.hash('changeme', 10),
+      });
+      await repository.insert(sellerUser);
+      console.log(`User with email ${sellerEmail} created successfully.`);
+    } else {
+      console.log(`User with email ${sellerEmail} already exists.`);
+    }
+  }
+  private async checkUserExists(
+    repository: Repository<UserEntity>,
+    email: string,
+  ): Promise<boolean> {
+    const user = await repository.findOne({ where: { email } });
+    return !!user;
   }
 }

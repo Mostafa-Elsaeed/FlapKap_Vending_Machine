@@ -8,7 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('API Documentation')
+    .setTitle('FlapKap Vending Machine')
     .setDescription('The API description')
     .setVersion('1.0')
     .addBearerAuth()
