@@ -8,6 +8,7 @@ import * as bcrypt from 'bcrypt';
 
 describe('UserService', () => {
   let userService: UserService;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let userRepository: Repository<UserEntity>;
 
   const mockUserRepository = {

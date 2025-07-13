@@ -7,6 +7,7 @@ import { RoleEnum } from './role.enum';
 
 describe('UserController', () => {
   let controller: UserController;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let userService: UserService;
 
   const mockUserService = {

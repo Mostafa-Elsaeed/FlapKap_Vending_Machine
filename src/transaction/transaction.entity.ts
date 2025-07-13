@@ -8,7 +8,7 @@ import {
   CreateDateColumn,
 } from 'typeorm';
 
-@Entity()
+@Entity('transactions')
 export class TransactionEntity {
   @PrimaryGeneratedColumn()
   id: number;

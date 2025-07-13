@@ -9,6 +9,7 @@ import { RoleEnum } from '../user/role.enum';
 
 describe('TransactionsController', () => {
   let controller: TransactionsController;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let service: TransactionsService;
 
   const mockTransactionsService = {
@@ -66,6 +67,7 @@ describe('TransactionsController', () => {
       const result = await controller.buy(buyDto, user);
 
       // Assertions
+
       expect(mockTransactionsService.buy).toHaveBeenCalledWith(
         buyDto,
         'user-123',

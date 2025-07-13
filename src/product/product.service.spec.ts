@@ -7,7 +7,7 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { IJwtPayload } from '../auth/interfaces/jwt.interface';
 import { RoleEnum } from '../user/role.enum';
 import { ObjectLiteral } from 'typeorm';
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type MockRepository<T extends ObjectLiteral = any> = {
   find: jest.Mock;
   findOne: jest.Mock;

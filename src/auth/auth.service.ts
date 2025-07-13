@@ -5,6 +5,8 @@ import { SignUpDto } from './dto/signup.dto';
 import { SignInDto } from './dto/signin.dto';
 import { UserService } from '../user/user.service';
 import { IJwtPayload } from './interfaces/jwt.interface';
+import { CreateSellerDto } from './dto/create-seller.dto';
+import { RoleEnum } from 'src/user/role.enum';
 
 @Injectable()
 export class AuthService {
@@ -43,6 +45,17 @@ export class AuthService {
       lastName: signUp.lastName,
       email: signUp.email,
       password: signUp.password,
+      role: RoleEnum.BUYER,
+    });
+  }
+
+  async createSeller(sellerDto: CreateSellerDto) {
+    return await this.userService.createUser({
+      firstName: sellerDto.firstName,
+      lastName: sellerDto.lastName,
+      email: sellerDto.email,
+      password: sellerDto.password,
+      role: RoleEnum.SELLER,
     });
   }
 }

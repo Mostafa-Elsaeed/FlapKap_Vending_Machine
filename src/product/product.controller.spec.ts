@@ -5,10 +5,10 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { NotFoundException } from '@nestjs/common';
 import { IJwtPayload } from 'src/auth/interfaces/jwt.interface';
-import { RoleEnum } from '../user/role.enum';
 
 describe('ProductController', () => {
   let controller: ProductController;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let productService: ProductService;
 
   const mockProductService = {

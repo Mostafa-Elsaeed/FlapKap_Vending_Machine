@@ -6,6 +6,7 @@ import * as bcrypt from 'bcrypt';
 export default class UserSeeder implements Seeder {
   public async run(
     dataSource: DataSource,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     factoryManager: SeederFactoryManager,
   ): Promise<void> {
     // Clear existing users

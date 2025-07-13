@@ -39,6 +39,7 @@ export class UserService {
       lastName: userInfo.lastName,
       email: userInfo.email,
       hashPassword: await this.hashPassword(userInfo.password),
+      role: userInfo.role,
     });
     return this.usersRepository.save(user);
   }
