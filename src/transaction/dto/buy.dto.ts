@@ -2,7 +2,7 @@ import { IsInt, Min } from 'class-validator';
 
 export class BuyDto {
   @IsInt()
-  productId: number;
+  productId: string;
 
   @IsInt()
   @Min(1)

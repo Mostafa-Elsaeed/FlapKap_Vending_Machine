@@ -17,7 +17,7 @@ export class ProductService {
     return this.productRepo.find();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.productRepo.findOne({ where: { id } });
   }
 
@@ -29,7 +29,7 @@ export class ProductService {
     return this.productRepo.save(product);
   }
 
-  async update(id: number, dto: UpdateProductDto) {
+  async update(id: string, dto: UpdateProductDto) {
     await this.productRepo.update(id, dto);
     return this.findOne(id);
   }

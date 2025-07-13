@@ -3,7 +3,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { SignUpDto } from './dto/signup.dto';
 import { SignInDto } from './dto/signin.dto';
-import { UserService } from 'src/user/user.service';
+import { UserService } from '../user/user.service';
 import { IJwtPayload } from './interfaces/jwt.interface';
 
 @Injectable()

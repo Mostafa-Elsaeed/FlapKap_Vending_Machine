@@ -1,13 +1,13 @@
 import { Controller, Post, Body, UseGuards, Request } from '@nestjs/common';
 
 import { BuyDto } from './dto/buy.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
-import { RolesGuard } from 'src/auth/guards/role.guard';
-import { RoleEnum } from 'src/user/role.enum';
-import { Roles } from 'src/auth/decorators/role.decorator';
+import { JwtAuthGuard } from '../auth/guards/jwt.guard';
+import { RolesGuard } from '../auth/guards/role.guard';
+import { RoleEnum } from '../user/role.enum';
+import { Roles } from '../auth/decorators/role.decorator';
 import { TransactionsService } from './transaction.service';
-import { IJwtPayload } from 'src/auth/interfaces/jwt.interface';
-import { User } from 'src/auth/decorators/user.decorator';
+import { IJwtPayload } from '../auth/interfaces/jwt.interface';
+import { User } from '../auth/decorators/user.decorator';
 
 @Controller('transactions')
 @UseGuards(JwtAuthGuard, RolesGuard)

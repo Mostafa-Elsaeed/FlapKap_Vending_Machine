@@ -6,8 +6,8 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { BuyDto } from './dto/buy.dto';
-import { UserEntity } from 'src/user/user.entity';
-import { ProductEntity } from 'src/product/product.entity';
+import { UserEntity } from '../user/user.entity';
+import { ProductEntity } from '../product/product.entity';
 import { TransactionEntity } from './transaction.entity';
 
 const VALID_COINS = [100, 50, 20, 10, 5];
