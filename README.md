@@ -71,3 +71,49 @@ The application uses environment variables for configuration:
 
 1. Clone the repository
 2. Install dependencies:
+
+```bash
+npm install
+```
+
+### Running with Docker
+
+You can easily run the application using Docker and Docker Compose:
+
+1. Make sure you have Docker and Docker Compose installed on your system
+2. Build and start the containers:
+
+```bash
+docker-compose up -d
+```
+
+This will start both the application and the PostgreSQL database in containers.
+
+### Running Locally
+
+Alternatively, if you prefer to run the application locally:
+
+1. Copy the example environment file and configure it with your credentials:
+
+```bash
+cp .env.example .env
+```
+
+2. Modify the `.env` file with your own database credentials and other settings
+3. Run database migrations:
+
+```bash
+npm run migrations
+```
+
+4. Seed the database with initial data:
+
+```bash
+npm run seed
+```
+
+5. Start the application:
+
+```bash
+npm run start:dev
+```
